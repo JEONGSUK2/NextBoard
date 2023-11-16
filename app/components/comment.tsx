@@ -69,7 +69,17 @@ export default function Comment(props:CommentProps ){
             setTotalComment(data.result)
         }
        fetchData()
-    },[params.id])
+    },[])
+
+    
+  useEffect(()=>{
+    setFormData({
+      userid: session?.user.email ?? '',
+      username: session?.user.name ?? '',
+      parentid: id,
+      content: '',
+    })
+  },[session?.user.name, session?.user.email,id])
 
 
     const cmtSubmit = async () =>{
