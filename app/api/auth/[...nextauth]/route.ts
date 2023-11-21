@@ -14,7 +14,8 @@ interface User{
     id: string;
     name: string;
     email: string;
-    level: string
+    level: string;
+    phone: string;
 }
 
 interface CustomSession extends Session{
@@ -44,7 +45,8 @@ export const authOptions :any = {
             name: "Credentials",
             credentials: {
               email: { label: "email", type: "text", placeholder: "email을 입력하세요" },
-              password: { label: "Password", type: "password" }
+              password: { label: "Password", type: "password" },
+              phone : {label : "phone", type: "text"}
             },
             async authorize(credentials) : Promise<User | null>{
 
@@ -52,7 +54,7 @@ export const authOptions :any = {
                     const [results] = await db.query<RowDataPacket[]>('select * from board.member where email = ?', [credentials?.email]);
                     console.log(results[0].email)
                     const userResult = results[0]
-                    if(!credentials || !credentials.email || !credentials.password){
+                    if(!credentials || !credentials.email || !credentials.password || !credentials.phone){
                         return null
                     }
                     if(!results[0].email || !userResult.password){
@@ -69,7 +71,8 @@ export const authOptions :any = {
                         id : userResult.id,
                         name: userResult.name,
                         email: userResult.email,
-                        level: userResult.level
+                        level: userResult.level,
+                        phone: userResult.phone
                     }             
                     return user;
                 }catch(error){
@@ -93,7 +96,8 @@ export const authOptions :any = {
                 token.user ={
                     name: user.name,
                     email: user.email,
-                    level : user.level
+                    level : user.level,
+                    phone: user.phone
                 };
             }
             return token

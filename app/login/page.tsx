@@ -12,7 +12,8 @@ interface userInfo{
         name:string;
         email:any;
         password: string;
-        level: number
+        level: number;
+       
     }
 }
 
@@ -24,6 +25,7 @@ export default function LoginPage() {
     const [password, setPassword] = useState<string>('');
     const {data: session} = useCustomSession();
     const[preUrl, setPreUrl] = useState<string>('');
+    const [phone, setPhone] = useState<string>('');
 
     useEffect(()=>{
         if(typeof window !== 'undefined'){
@@ -37,7 +39,8 @@ export default function LoginPage() {
     const SignIn = () => {
       const credentials = {
         email: email,
-        password: password
+        password: password,
+        phone: phone
       };
 
 
@@ -75,6 +78,13 @@ export default function LoginPage() {
                         <input type="password" className='px-2 border border-l-orange-500 border-l-2 h-[50px] w-full mx-auto focus:outline-gray-400' placeholder='비밀번호를 입력해주세요'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    <div className='text-start mt-3'>
+                        <p>전화번호</p>
+                        <input type="text" className='px-2 border border-l-orange-500 border-l-2 h-[50px] w-full mx-auto focus:outline-gray-400' placeholder='전화번호를 입력해주세요'
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
                         />
                     </div>
                     <div className="flex justify-between">

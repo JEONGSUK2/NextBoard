@@ -69,7 +69,7 @@ export default function Write(){
 
       <form method="post" onSubmit={submitEvent} className="mt-10 flex flex-col max-w-7xl mx-auto">
         <div className="flex justify-center">
-        <input type="text" name="name" value={session && session.user.name} onChange={changeEvent} className="shadow text-gray-700 text-sm mb-2 border p-10" />
+        <input type="text" name="name" value={session?.user.name??''} onChange={changeEvent} className="shadow text-gray-700 text-sm mb-2 border p-10" />
         <input type="text" className="shadow text-gray-700 text-sm mb-2 border p-20" name="title" onChange={changeEvent} defaultValue={formData.title} placeholder="게시글 타이틀을 입력해주세요"/>
         <textarea name="content" className="shadow text-gray-700 text-sm mb-2 border p-20" onChange={changeEvent} defaultValue={formData.content} placeholder="게시글 내용을 입력해주세요"></textarea>
         </div>

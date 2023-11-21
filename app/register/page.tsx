@@ -8,6 +8,7 @@ interface formType{
     email: string;
     password: string;
     name: string;
+    phone: string;
 }
 
 
@@ -15,7 +16,8 @@ export default  function Register(){
     const [formData, setFormData] = useState<formType>({
         email: '',
         password: '',
-        name:''
+        name:'',
+        phone:''
     })
     const [message, setMessage] = useState<string>("");
 
@@ -45,6 +47,7 @@ export default  function Register(){
                     signIn('credentials', {
                         email: result.email,
                         password: result.password,
+                        phone: result.phone,
                         callbackUrl: '/'
                     })
                 }
@@ -63,6 +66,7 @@ export default  function Register(){
             <input onChange={changeEvent} type="text" placeholder="이메일" name="email" required />
             <input onChange={changeEvent} type="password" placeholder="비밀번호" name="password" required />
             <input onChange={changeEvent} type="text" placeholder="이름" name="name" required />
+            <input onChange={changeEvent} type="text" placeholder="전화번호를 입력해주세요" name="phone" required />
             <button type="submit">가입</button>
         </form>
         

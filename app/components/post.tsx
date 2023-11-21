@@ -78,7 +78,7 @@ export default function Post() {
                         <ul key={i} className='flex justify-between'>
                             <li className="px-6 basis-2/12 py-3 text-center">{(posts.length - i)}</li>
                             <li className="px-6 basis-6/12 py-3 text-center"><Link href={`/post/${e.id}`}>{e.author}</Link></li>
-                            <li className="px-6 basis-2/12 py-3 text-center"> {e.title}</li>
+                            <li className="px-6 basis-2/12 py-3 text-center"> <Link href={`/post/${e.id}`}>{e.title}</Link></li>
                             <li  className="px-6 basis-2/12 py-3 text-center">{formatDate}</li>
                             {/* <p>이름 : {e.Name} / 구역 : {e.District} / 인구 : {e.Population}</p> */}
                         </ul>

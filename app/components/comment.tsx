@@ -22,6 +22,8 @@ data.id로 사용가능
 import { useEffect, useState } from "react";
 import { useCustomSession } from "../sessions";
 import { useParams } from "next/dist/client/components/navigation";
+import React, { Fragment } from "react";
+
 
 interface CommentProps{
     id:number
@@ -122,10 +124,10 @@ export default function Comment(props:CommentProps ){
                     const formatDate = `${year}-${month}-${day}-${hours}:${minutes}:${seconds}`
 
                         return(
-                            <>     
-                           <p key={i}>{formatDate}</p>
+                            <React.Fragment key={i}>     
+                           <p>{formatDate}</p>
                            <p>{formData.username}</p>
-                            </>
+                            </React.Fragment>
                         )
                     })
                 }

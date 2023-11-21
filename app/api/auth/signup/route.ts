@@ -8,6 +8,7 @@ interface formType{
     email: string;
     password: string;
     name: string;
+    phone: string;
 }
 
 
@@ -16,9 +17,9 @@ export const POST = async (
 ) : Promise<NextResponse> =>{
     if(req.method === 'POST'){
 
-        const {email, password, name} : formType = JSON.parse(await req.text());
+        const {email, password, name, phone} : formType = JSON.parse(await req.text());
 
-        if(!email || !password || !name){
+        if(!email || !password || !name || !phone){
             return NextResponse.json({message: "데이터가 부족합니다."})
         }
 
@@ -27,15 +28,15 @@ export const POST = async (
         const [checkMember] = await db.query<RowDataPacket[] >('select  count(*) cnt from board.member where email = ?', [email])
 
        
-        
         const memberCnt = checkMember[0].cnt;
         if(memberCnt > 0){
             return NextResponse.json({message: "해당 이메일이 존재합니다."})
         }else{
-            await db.query('insert into board.member (email,password, name) value(?,?,?)',[email, hash, name])
+            await db.query('insert into board.member (email,password, name, phone) value(?,?,?,?)',[email, hash, name, phone])
             const data = {
                 email: email,
-                password: password
+                password: password,
+                phone: phone
             }
             return NextResponse.json({message: "성공", data: data})
         }

@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Login from './components/login'
 import { getServerSession } from 'next-auth'
 import { authOptions } from './api/auth/[...nextauth]/route'
 import Link from 'next/link'
 import AuthSession from './session'
+import Nav from './components/nav'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   }
 }
 
+
 export default async function RootLayout({
   children,
 }: {
@@ -26,10 +27,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-
       <body className={inter.className}>
         <AuthSession>
-          <Login/>
+          <Nav/>
           {children}
         </AuthSession>
       </body>
